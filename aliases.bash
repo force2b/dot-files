@@ -23,6 +23,9 @@ alias gitreset='git reset --hard HEAD'
 alias deldir='rm -rf '
 alias sfdxlist='sfdx force:org:list'
 alias orglist='cci org list'
+alias restartaudio='sudo killall coreaudiod'
+
+alias testscratchorg='function _testscratchorg(){ cci org remove $1; cci org scratch feature $1; cci flow run ci_feature --org $1; };_testscratchorg'
 
 ## createscratchorg {orgtype} {orgalias}
 function createscratchorg {
@@ -52,4 +55,15 @@ function createscratchorg {
   sfdx force:org:list
 }
 
-alias testscratchorg='function _testscratchorg(){ cci org remove $1; cci org scratch feature $1; cci flow run ci_feature --org $1; };_testscratchorg'
+## pushlaunch {orgalias}
+function pushlaunch {
+  if [ -z "$1" ]
+   then
+     echo "Syntax: pushlaunch {orgalias}"
+     return
+   fi
+
+  cci task run unschedule_apex  --org $1
+  cci task run deploy  --org $1
+  cci org browser $1
+}

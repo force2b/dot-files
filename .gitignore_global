@@ -1,0 +1,9 @@
+*~
+.DS_Store
+/.idea
+*.iml
+/IlluminatedCloud
+sandbox_test
+inlinehelptext-deploy
+.cci
+datasets/dev_org/test_data.db
