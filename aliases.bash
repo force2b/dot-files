@@ -14,7 +14,10 @@ alias gf='git fetch'
 alias gp='git pull'
 alias gpr='git pull --rebase'
 alias gc='git checkout'
-alias updatedevorg='function _updatedevorg(){ cci task run unschedule_apex $1 $2; cci task run deploy $1 $2; };_updatedevorg'
+alias updatedevorg='function _updatedevorg() 
+  { cci task run unschedule_apex $1 $2; 
+    cci task run deploy $1 $2; 
+  };_updatedevorg'
 alias runtest='cci task run run_tests -o test_name_match '
 alias killjobs='cci task run unschedule_apex '
 alias upgradeall='brew update && brew upgrade && sfdx update '
@@ -24,8 +27,18 @@ alias deldir='rm -rf '
 alias sfdxlist='sfdx force:org:list'
 alias orglist='cci org list'
 alias restartaudio='sudo killall coreaudiod'
+alias deployrd2='function _deployrd2()
+  { cci task run enable_pilot_in_scratch_org $1 $2; 
+    cci task run enable_customizable_rollups $1 $2; 
+    cci task run deploy_rd2_config $1 $2; 
+  };_deployrd2'
 
-alias testscratchorg='function _testscratchorg(){ cci org remove $1; cci org scratch feature $1; cci flow run ci_feature --org $1; };_testscratchorg'
+alias scratchorg='function _scratchorg() 
+  { cci org scratch_delete $2; 
+    cci org scratch $1 $2 $3 $4 $5 $6 $7 $8 $9; 
+    cci flow run qa_org --org $2; 
+    cci flow run test_data_dev_org --org $2; 
+    };_scratchorg'
 
 ## createscratchorg {orgtype} {orgalias}
 function createscratchorg {
