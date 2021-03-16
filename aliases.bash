@@ -65,7 +65,7 @@ alias keyprefixes='grep -A 2 "The next 30 available" ~/blt/app/main/core/core-ap
 alias uddybuddy='corecli udd:entity-generator'
 alias tmpauth='open http://tmp-auth.slb.sfdc.net/saml_tmp --background'
 ## Force an update of the main tools
-alias coreupdate='honuadmin update bootstrap && honuadmin update corecli'
+alias coreupdate='honuadmin update --all'
 
 ## ========================================
 ## One Command Scratch Org Builder
