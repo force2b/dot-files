@@ -1,5 +1,5 @@
-alias viprofile='code ~/.bash_profile ~/GitHub/dot-files'
-alias loadprofile='source ~/.bash_profile'
+alias viprofile='code ~/.zshrc ~/GitHub/dot-files/aliases.bash  ~/GitHub/dot-files/exports.bash ~/.oh-my-zsh/oh-my-zsh.sh ~/GitHub/dot-files'
+alias loadprofile='source ~/.zshrc'
 
 alias upgradeall='brew update && brew upgrade --formula && brew upgrade --cask && sfdx update '
 
@@ -9,6 +9,7 @@ alias cddev1='cd ~/IdeaProjects/npsp'
 alias cddev2='cd ~/IdeaProjects/npsp2'
 alias cdcci='cd ~/github/cumulusci && gp'
 alias cdcore='cd ~/blt/app/main/core'
+alias cdpatch='cd ~/blt/app/234/patch/core'
 alias dir='ls -g'
 alias deldir='rm -rf '
 alias cls='clear'
@@ -26,7 +27,7 @@ alias runtask='cci task run '
 alias runflow='cci flow run '
 alias updatedevorg='function _updatedevorg()
   { cci task run unschedule_apex $1 $2;
-    cci task run deploy $1 $2;
+    cci task run dx_push $1 $2;
   };_updatedevorg'
 alias runtest='cci task run run_tests -o test_name_match '
 alias english='cci task run set_user_language -o param1 english --org '
@@ -40,19 +41,22 @@ alias gitreset='git reset --hard HEAD'
 ## Utilities & Other Aliases
 alias spexy='function _startspexy()
   {
+    docker-compose -f ~/github/spexy/docker-compose.yml pull
     docker-compose -p Spexy -f ~/github/spexy/docker-compose.yml up -d
-    echo Launch Spexy at http://localhost:8001
+    sleep 3s
+    open http://localhost:8001 --background
   };_startspexy'
 
 ## ===== Core Build Commands =====
 alias p4v='corecli gui:p4v'
 ## This runs pre and then runs compile in the IDE
-alias coreide='corecli --eclipse -b'
+alias coreide='corecli --intellij'
 ## Runs the two steps needed after the pre/compile steps run by the above
 alias coredb='corecli core:build post plsql'
+alias coredblist='corecli db:list'
 alias corepost='corecli core:build post'
 ## Sync with the artifacts param as per a 3/3/21 request from the corecli pilot team
-alias coresync='corecli core:sync --artifacts'
+alias coresync='corecli core:sync'
 ## Runs a full build of everything
 alias corebuild='corecli core:build'
 ## Figure out what went wrong
@@ -63,9 +67,11 @@ alias corestop='corecli core:stop'
 ## Dump the next 30 available key previxes
 alias keyprefixes='grep -A 2 "The next 30 available" ~/blt/app/main/core/core-app/plsql-global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
-alias tmpauth='open http://tmp-auth.slb.sfdc.net/saml_tmp --background'
+# alias tmpauth='open http://tmp-auth.slb.sfdc.net/saml_tmp --background'
 ## Force an update of the main tools
 alias coreupdate='honuadmin update --all'
+alias corehelp='corecli --ihelp'
+alias coremodules='code workspace-user.xml ~/blt/app/main/defaultmodule.txt'
 
 ## ========================================
 ## One Command Scratch Org Builder

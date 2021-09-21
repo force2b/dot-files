@@ -1,4 +1,3 @@
-export PATH="/usr/local/opt/openjdk/bin:/usr/local/bin:${PATH}"
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
