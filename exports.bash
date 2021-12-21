@@ -7,7 +7,7 @@ export P4PORT=ssl:p4proxy.atlanta.soma.salesforce.com:1999
 export HONU_BROWSER_HELP=false
 export P4CLIENT=msmith-ltm10
 export P4USER=smithmichael
-# export P4PASSWD=Audix#885
+# export P4PASSWD=Audix@885
 export SFDX_DISABLE_DNS_CHECK="true"
 
 ## SFDX and CCI Local Dev

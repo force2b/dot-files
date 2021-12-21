@@ -1,7 +1,7 @@
 alias viprofile='code ~/.zshrc ~/GitHub/dot-files/aliases.bash  ~/GitHub/dot-files/exports.bash ~/.oh-my-zsh/oh-my-zsh.sh ~/GitHub/dot-files'
 alias loadprofile='source ~/.zshrc'
 
-alias upgradeall='brew update && brew upgrade --formula && brew upgrade --cask && sfdx update '
+alias upgradeall='brew update && brew upgrade --formula && brew upgrade --cask && omz update && sfdx update'
 
 ## Dev Folder Access
 alias cdgh='cd ~/GitHub'
@@ -26,8 +26,8 @@ alias runtests='cci task run run_tests'
 alias runtask='cci task run '
 alias runflow='cci flow run '
 alias updatedevorg='function _updatedevorg()
-  { cci task run unschedule_apex $1 $2;
-    cci task run dx_push $1 $2;
+  { cci task run unschedule_apex --org $1 $2;
+    sfdx force:source:push -f -u Cumulus__$1 $2;
   };_updatedevorg'
 alias runtest='cci task run run_tests -o test_name_match '
 alias english='cci task run set_user_language -o param1 english --org '
@@ -52,17 +52,17 @@ alias p4v='corecli gui:p4v'
 ## This runs pre and then runs compile in the IDE
 alias coreide='corecli --intellij'
 ## Runs the two steps needed after the pre/compile steps run by the above
-alias coredb='corecli core:build post plsql'
+alias coredb='time corecli core:build post plsql'
 alias coredblist='corecli db:list'
-alias corepost='corecli core:build post'
+alias corepost='time corecli core:build post'
 ## Sync with the artifacts param as per a 3/3/21 request from the corecli pilot team
-alias coresync='corecli core:sync'
+alias coresync='time corecli core:sync'
 ## Runs a full build of everything
-alias corebuild='corecli core:build'
+alias corebuild='time corecli core:build'
 ## Figure out what went wrong
-alias corefix='corecli core:investigate'
+alias corefix='time corecli core:investigate'
 ## Stop/Stop the local instance
-alias corestart='corecli core:start -b'
+alias corestart='time corecli core:start -b'
 alias corestop='corecli core:stop'
 ## Dump the next 30 available key previxes
 alias keyprefixes='grep -A 2 "The next 30 available" ~/blt/app/main/core/core-app/plsql-global/gKeyPrefixes.sql'
@@ -89,3 +89,10 @@ alias scratchorg='function _scratchorg()
 
     cci org list
   };_scratchorg'
+
+alias backupstuff='function _backupstuff()
+  {
+    brew bundle dump
+    rm ~/Documents/Backups/Brewfile
+    mv Brewfile ~/Documents/Backups
+  };_backupstuff'
