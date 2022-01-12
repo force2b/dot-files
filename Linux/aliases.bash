@@ -36,7 +36,7 @@ alias p4get='git sfdc p4get'
 alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -q -L 2000; done'
 
 ## Completely re-download a new version of the ASL repo
-alias resetasl='function _resetasl()
+alias recreateaslfoldr='function _resetasl()
   {
     cd /data
     mv subledger subledger-"$(date +%Y-%m-%d)"
@@ -45,6 +45,7 @@ alias resetasl='function _resetasl()
     git clone git@git.soma.salesforce.com:gimlet-repos/team-abacus-main.git .
     cd app/main/core
     cp /data/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .
+    cp /data/subledger-"$(date +%Y-%m-%d)"/app/main/core/build/dev.properties build/
     time git sfdc p4get
     corecli core:build clean
   };_resetasl'
