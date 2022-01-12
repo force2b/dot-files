@@ -10,6 +10,7 @@ alias cddev2='cd ~/IdeaProjects/npsp2'
 alias cdcci='cd ~/github/cumulusci && gp'
 alias cdcore='cd ~/blt/app/main/core'
 alias cdpatch='cd ~/blt/app/234/patch/core'
+alias cdasl='cd ~/coredev/subledger/app/main/core'
 alias dir='ls -g'
 alias deldir='rm -rf '
 alias cls='clear'
@@ -35,8 +36,11 @@ alias spanish='cci task run set_user_language -o param1 spanish --org '
 alias killjobs='cci task run unschedule_apex '
 alias orglist='cci org list'
 alias sfdxlist='sfdx force:org:list'
+
 alias resetpackage='git checkout src/package.xml'
 alias gitreset='git reset --hard HEAD'
+alias cleanlocal='git fetch origin && git reset --hard && git clean -f -d'
+
 
 ## Utilities & Other Aliases
 alias spexy='function _startspexy()
@@ -72,6 +76,36 @@ alias uddybuddy='corecli udd:entity-generator'
 alias coreupdate='honuadmin update --all'
 alias corehelp='corecli --ihelp'
 alias coremodules='code workspace-user.xml ~/blt/app/main/defaultmodule.txt'
+
+alias p4get='git sfdc p4get'
+
+
+alias aslclean='function _clean_asl_build_directory()
+{
+  rm ../.DS_Store
+  rm ../../.DS_Store
+  rm ../../../.DS_Store
+  git fetch origin
+  git reset --hard
+  git clean -f -d
+  git pull
+  git sfdc p4get
+};_clean_asl_build_directory'
+
+## Completely re-download a new version of the ASL repo
+alias recreateaslfolder='function _resetasl()
+  {
+    cd /coredev
+    mv subledger subledger-"$(date +%Y-%m-%d)"
+    mkdir subledger
+    cd subledger
+    git clone git@git.soma.salesforce.com:gimlet-repos/team-abacus-main.git .
+    cd app/main/core
+    cp /coredev/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .
+    cp /coredev/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .
+    time git sfdc p4get
+    corecli core:build clean
+  };_resetasl'
 
 ## ========================================
 ## One Command Scratch Org Builder
