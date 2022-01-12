@@ -36,7 +36,7 @@ alias p4get='git sfdc p4get'
 alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -q -L 2000; done'
 
 ## Completely re-download a new version of the ASL repo
-alias recreateaslfoldr='function _resetasl()
+alias recreateaslfolder='function _resetasl()
   {
     cd /data
     mv subledger subledger-"$(date +%Y-%m-%d)"
