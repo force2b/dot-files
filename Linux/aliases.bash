@@ -1,6 +1,14 @@
 alias resettimeout='dconf write /org/gnome/desktop/screensaver/lock-enabled false && dconf write /org/gnome/desktop/session/idle-delay "uint32 1200"'
 
-alias upgradeall='sudo apt update && brew update && brew upgrade --formula && brew upgrade --cask && omz update && sfdx update'
+alias upgradeall='function _upgradeall()
+  {
+    sudo apt upgrade
+    brew update
+    brew upgrade --formula
+    brew upgrade --cask
+    omz update
+    sfdx update
+  };_upgradeall'
 
 alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc /data/Github/dot-files/'
 alias loadprofile='source ~/.bash_profile'
@@ -8,6 +16,8 @@ alias loadprofile='source ~/.bash_profile'
 alias cdcore='cd /data/blt/app/main/core'
 alias cdasl='cd /data/subledger/app/main/core'
 alias cdgh='cd /data/Github'
+
+alias findtext='grep -rnw . -e'
 
 alias gs='git status'
 alias gp='git pull'
@@ -29,7 +39,7 @@ alias coresync='time corecli core:sync'
 alias corestart='time corecli core:start -b'
 alias corestop='corecli core:stop'
 alias coreupdate='honuadmin update --all'
-alias coremodules='code workspace-user.xml'
+alias coremodules='code workspace-user.xml build/dev.properties'
 alias corefix='time corecli core:investigate'
 
 alias p4get='git sfdc p4get'
