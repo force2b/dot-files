@@ -54,8 +54,17 @@ alias recreateaslfolder='function _resetasl()
     cd subledger
     git clone git@git.soma.salesforce.com:gimlet-repos/team-abacus-main.git .
     cd app/main/core
-    cp /data/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .
+    cp /data/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .s
     cp /data/subledger-"$(date +%Y-%m-%d)"/app/main/core/build/dev.properties build/
     time git sfdc p4get
     corecli core:build clean
   };_resetasl'
+
+
+## ========================================
+## One Command Scratch Org Builder
+alias makeorg='function _createlocalorg()
+  {
+    sfdx alt:org:create -e smithmichael@saleforce.com -m "$1 [$(date +%Y-%m-%d)]" -c "LocalBuildOrg $(date +%Y-%m-%d)" -p 123456 -t enterprise -u $1@local.org
+  };_createlocalorg'
+
