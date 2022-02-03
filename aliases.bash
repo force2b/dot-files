@@ -21,15 +21,23 @@ alias gp='git pull'
 alias gpr='git pull --rebase'
 alias gc='git checkout'
 
+alias findfile='find . -type f -iname '
+alias findtext='grep -rnw . -e '
+
 ## ===== CCI Commands =====
 alias launchorg='cci org browser '
 alias runtests='cci task run run_tests'
 alias runtask='cci task run '
 alias runflow='cci flow run '
 alias updatedevorg='function _updatedevorg()
-  { cci task run unschedule_apex --org $1 $2;
+  { 
     sfdx force:source:push -f -u Cumulus__$1 $2;
   };_updatedevorg'
+alias updatedevorgfull='function _updatedevorgfull()
+  { 
+    cci task run unschedule_apex --org $1 $2;
+    sfdx force:source:push -f -u Cumulus__$1 $2;
+  };_updatedevorgfull'
 alias runtest='cci task run run_tests -o test_name_match '
 alias english='cci task run set_user_language -o param1 english --org '
 alias spanish='cci task run set_user_language -o param1 spanish --org '
@@ -69,7 +77,7 @@ alias corefix='time corecli core:investigate'
 alias corestart='time corecli core:start -b'
 alias corestop='corecli core:stop'
 ## Dump the next 30 available key previxes
-alias keyprefixes='grep -A 2 "The next 30 available" ~/blt/app/main/core/core-app/plsql-global/gKeyPrefixes.sql'
+alias keyprefixes='grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
 # alias tmpauth='open http://tmp-auth.slb.sfdc.net/saml_tmp --background'
 ## Force an update of the main tools
