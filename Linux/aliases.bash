@@ -1,4 +1,5 @@
-alias resettimeout='dconf write /org/gnome/desktop/screensaver/lock-enabled false && dconf write /org/gnome/desktop/session/idle-delay "uint32 1200"'
+# dconf write /org/gnome/desktop/screensaver/lock-enabled false
+alias resettimeout='dconf write /org/gnome/desktop/session/idle-delay "uint32 3600"'
 
 alias upgradeall='function _upgradeall()
   {
@@ -41,6 +42,9 @@ alias corestop='corecli core:stop'
 alias coreupdate='honuadmin update --all'
 alias coremodules='code workspace-user.xml build/dev.properties'
 alias corefix='time corecli core:investigate'
+## Dump the next 30 available key previxes
+alias keyprefixes='grep -A 2 "The next 30 available" ./core-app/plsql-global/gKeyPrefixes.sql'
+alias uddybuddy='corecli udd:entity-generator'
 
 alias p4get='git sfdc p4get'
 alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -q -L 2000; done'
@@ -62,9 +66,20 @@ alias recreateaslfolder='function _resetasl()
 
 
 ## ========================================
-## One Command Scratch Org Builder
+## One Command Local Org Builder
 alias makeorg='function _createlocalorg()
   {
-    sfdx alt:org:create -e smithmichael@saleforce.com -m "$1 [$(date +%Y-%m-%d)]" -c "LocalBuildOrg $(date +%Y-%m-%d)" -p 123456 -t enterprise -u $1@local.org
+    echo "Creating a new local org as:"
+    echo "- Username: $1@local.org"
+    echo "- Password: 123456"
+    echo "- Domain:   https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101"
+    echo "- HoseMyOrg:   https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101/qa/hoseMyOrgPlease.jsp"
+    echo ".... Please Wait ...."
+    time sfdx alt:org:create -e smithmichael@saleforce.com -m "$1-$(date +%Y-%m-%d)" -c "$1 [$(date +%Y-%m-%d)]" -p 123456 -t enterprise -u $1@local.org
+    echo ""
+    echo ""
+    echo "To Authorize in SFDX, run the following copying the orgId from the above result"
+    echo "sfdx alt:sfdx:enable -o {orgid}"
+    echo "sfdx auth:web:login -a $1 -r https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101"
   };_createlocalorg'
 
