@@ -77,7 +77,7 @@ alias corefix='time corecli core:investigate'
 alias corestart='time corecli core:start -b'
 alias corestop='corecli core:stop'
 ## Dump the next 30 available key previxes
-alias keyprefixes='grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
+alias keyprefixes='stat -f "%Sm" -t "Build Data As Of %Y-%m-%d %H:%M" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
 # alias tmpauth='open http://tmp-auth.slb.sfdc.net/saml_tmp --background'
 ## Force an update of the main tools
