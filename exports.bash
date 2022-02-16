@@ -3,7 +3,7 @@
 
 export CUMULUSCI_KEY=0a8xfc6d8e232g4h
 ## Core Development Helpers
-export P4PORT=ssl:p4proxy.atlanta.soma.salesforce.com:1999
+export P4PORT=ssl:p4proxy.toronto.soma.salesforce.com:1999
 export HONU_BROWSER_HELP=false
 export P4CLIENT=msmith-ltm10
 export P4USER=smithmichael

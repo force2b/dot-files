@@ -5,7 +5,7 @@ export LS_COLORS="$LS_COLORS:di=1;34;107"
 export CUMULUSCI_KEY=0a8xfc6d8e232g4h
 
 ## Core Exports
-export P4PORT=ssl:p4proxy.atlanta.soma.salesforce.com:1999
+export P4PORT=ssl:p4proxy.toronto.soma.salesforce.com:1999
 export P4CLIENT=smithmicha-wsl1
 export P4USER=smithmichael
 export BLT_HOME=/data/blt
