@@ -42,10 +42,12 @@ alias corebuildpost='time corecli core:build post'
 alias corebuildfull='time corebuild clean pre setup compile post plsql'
 alias coresync='time corecli core:sync'
 alias corestart='time corecli core:start -b'
+alias corerestart='time (corestop && sleep 4 && corestart)'
 alias corestop='corecli core:stop'
 alias coreupdate='honuadmin update --all'
 alias coremodules='code workspace-user.xml build/dev.properties'
 alias corefix='time corecli core:investigate'
+alias coredeleteorg='corecli db:sdb:drop-org'
 ## Dump the next 30 available key previxes
 alias keyprefixes='stat -f "%Sm" -t "Build Data As Of %Y-%m-%d %H:%M" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
@@ -73,7 +75,7 @@ alias recreateaslfolder='function _resetasl()
 ## One Command Local Org Builder
 alias makeorg='function _createlocalorg()
   {
-    echo "Creating a new local org as:"
+    echo "Creating a new ENTERPRISE local org as:"
     echo "- Username: $1@local.org"
     echo "- Password: 123456"
     echo "- Domain:   https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101"
@@ -87,3 +89,21 @@ alias makeorg='function _createlocalorg()
     echo "sfdx auth:web:login -a $1 -r https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101"
   };_createlocalorg'
 
+
+## ========================================
+## One Command Local Org Builder
+alias makedevorg='function _createdevorg()
+  {
+    echo "Creating a new DEVELOPER local org as:"
+    echo "- Username: $1.dev@local.org"
+    echo "- Password: 123456"
+    echo "- Domain:   https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101"
+    echo "- HoseMyOrg:   https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101/qa/hoseMyOrgPlease.jsp"
+    echo ".... Please Wait ...."
+    time sfdx alt:org:create -e smithmichael@saleforce.com -m "$1-$(date +%Y-%m-%d)" -c "$1 [$(date +%Y-%m-%d)]" -p 123456 -t developer -u $1.dev@local.org
+    echo ""
+    echo ""
+    echo "To Authorize in SFDX, run the following copying the orgId from the above result"
+    echo "sfdx alt:sfdx:enable -o {orgid}"
+    echo "sfdx auth:web:login -a $1 -r https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101"
+  };_createdevorg'
