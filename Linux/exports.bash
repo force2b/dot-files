@@ -3,6 +3,7 @@ export LS_COLORS="$LS_COLORS:di=1;34;107"
 
 ## CCI Exports
 export CUMULUSCI_KEY=0a8xfc6d8e232g4h
+export CUMULUSCI_SYSTEM_CERTS="True"
 
 ## Core Exports
 # export P4PORT=ssl:p4proxy.toronto.soma.salesforce.com:1999
