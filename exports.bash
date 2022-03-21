@@ -2,8 +2,10 @@
 # export PATH="/usr/local/opt/openjdk/bin:/usr/local/bin:${PATH}"
 
 export CUMULUSCI_KEY=0a8xfc6d8e232g4h
+export CUMULUSCI_SYSTEM_CERTS="True"
+
 ## Core Development Helpers
-export P4PORT=ssl:p4proxy.toronto.soma.salesforce.com:1999
+export P4PORT=ssl:p4proxy.ashburn.soma.salesforce.com:1999
 export HONU_BROWSER_HELP=false
 export P4CLIENT=msmith-ltm10
 export P4USER=smithmichael
