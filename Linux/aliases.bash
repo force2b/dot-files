@@ -17,7 +17,30 @@ alias loadprofile='source ~/.bash_profile'
 alias cdcore='cd /data/blt/app/main/core'
 alias cdasl='cd /data/subledger/app/main/core'
 alias cdgh='cd /data/Github'
+alias cdnpsp='cd /data/npsp/'
 
+## ===== CCI Commands =====
+alias launchorg='cci org browser '
+alias runtests='cci task run run_tests'
+alias runtask='cci task run '
+alias runflow='cci flow run '
+alias updatedevorg='function _updatedevorg()
+  { 
+    sfdx force:source:push -f -u Cumulus__$1 $2;
+  };_updatedevorg'
+alias updatedevorgfull='function _updatedevorgfull()
+  { 
+    cci task run unschedule_apex --org $1 $2;
+    sfdx force:source:push -f -u Cumulus__$1 $2;
+  };_updatedevorgfull'
+alias runtest='cci task run run_tests -o test_name_match '
+alias english='cci task run set_user_language -o param1 english --org '
+alias spanish='cci task run set_user_language -o param1 spanish --org '
+alias killjobs='cci task run unschedule_apex '
+alias orglist='cci org list'
+alias sfdxlist='sfdx force:org:list'
+
+## ====== Core Command s=====
 alias findtext='grep -rnw . -e'
 alias findfile='find . -type f -iname'
 
