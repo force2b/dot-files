@@ -76,6 +76,7 @@ alias coredeleteorg='corecli db:sdb:drop-org'
 ## Dump the next 30 available key previxes
 alias keyprefixes='stat -f "%Sm" -t "Build Data As Of %Y-%m-%d %H:%M" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
+alias ezbpo='/data/tools/EzBPO'
 
 alias p4get='git sfdc p4get'
 alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -q -L 2000; done'
