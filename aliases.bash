@@ -60,7 +60,7 @@ alias spexy='function _startspexy()
   };_startspexy'
 
 ## ===== Core Build Commands =====
-alias p4v='corecli gui:p4v'
+alias p4ui='corecli gui:p4v'
 ## This runs pre and then runs compile in the IDE
 alias coreide='corecli --intellij'
 ## Runs the two steps needed after the pre/compile steps run by the above
@@ -69,6 +69,7 @@ alias coredblist='corecli db:list'
 alias corepost='time corecli core:build post'
 ## Sync with the artifacts param as per a 3/3/21 request from the corecli pilot team
 alias coresync='time corecli core:sync'
+alias coresynclts='time corecli core:lts-sync'
 ## Runs a full build of everything
 alias corebuild='time corecli core:build'
 ## Figure out what went wrong
@@ -132,6 +133,8 @@ alias scratchorg='function _scratchorg()
     cci flow run enable_rd2 --org $2
 
     cci org list
+
+    cci org info $2 | grep -e instance -e org_id -e username -e password -e alias --color=NEVER
   };_scratchorg'
 
 alias backupstuff='function _backupstuff()
