@@ -53,6 +53,7 @@ alias deldir='rm -rf'
 
 alias updateperforce='git pull && cleanlocal && p4get'
 
+alias p4ui='corecli gui:p4v'
 alias cleanlocal='git fetch origin && git reset --hard && git clean -f -d'
 alias coreide='corecli --intellij'
 alias coredb='time corecli core:build post plsql'

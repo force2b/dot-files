@@ -23,6 +23,7 @@ export NODE_TLS_REJECT_UNAUTHORIZED=0
 ## PATH Updates 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$PATH:/data/sfdx/bin"
+export PATH="$PATH:/usr/local/bin"
 # Created by `pipx` on 2022-01-11 19:09:01
 export PATH="$PATH:/home/smithmichael/.local/bin"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/opt/node@16/bin"
