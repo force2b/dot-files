@@ -8,9 +8,6 @@ alias cdgh='cd ~/GitHub'
 alias cddev1='cd ~/IdeaProjects/npsp'
 alias cddev2='cd ~/IdeaProjects/npsp2'
 alias cdcci='cd ~/github/cumulusci && gp'
-alias cdcore='cd ~/blt/app/main/core'
-alias cdpatch='cd ~/blt/app/234/patch/core'
-alias cdasl='cd ~/coredev/subledger/app/main/core'
 alias dir='ls -g'
 alias deldir='rm -rf '
 alias cls='clear'
@@ -23,6 +20,8 @@ alias gc='git checkout'
 
 alias findfile='find . -type f -iname '
 alias findtext='grep -rnw . -e '
+alias findalias='alias | grep '
+alias findexport='export | grep '
 
 ## ===== CCI Commands =====
 alias launchorg='cci org browser '
@@ -44,6 +43,7 @@ alias spanish='cci task run set_user_language -o param1 spanish --org '
 alias killjobs='cci task run unschedule_apex '
 alias orglist='cci org list'
 alias sfdxlist='sfdx force:org:list'
+alias sfdxupdate='npm update --global sfdx-cli && npm install -g @salesforce/cli@latest-rc'
 
 alias resetpackage='git checkout src/package.xml'
 alias gitreset='git reset --hard HEAD'
@@ -59,7 +59,13 @@ alias spexy='function _startspexy()
     open http://localhost:8001 --background
   };_startspexy'
 
-## ===== Core Build Commands =====
+## ===== Core Related Aliases =====
+alias cdcore='cd ~/blt/app/main/core'
+alias cdgimlet='cd ~/coredev/core-public'
+# alias cdpatch='cd ~/blt/app/240/patch/core'
+
+
+## ===== Core Build Commands ======
 alias p4ui='corecli gui:p4v'
 ## This runs pre and then runs compile in the IDE
 alias coreide='corecli --intellij'
@@ -87,6 +93,7 @@ alias coreupdate='honuadmin update --all'
 alias corehelp='corecli --ihelp'
 alias coremodules='code workspace-user.xml ~/blt/app/main/defaultmodule.txt'
 
+## ===== Gimlet V2 =====
 alias updateperforce='git pull && cleanlocal && p4get'
 alias p4get='git sfdc p4get'
 
