@@ -161,10 +161,21 @@ alias newbranch='function gimlet_branch()
       echo "- Workitem number (w-1234567)"
       echo "- Short description with NO spaces (some-work-description)"
     else
-      echo Sycing with p4/main and creating a new branch for t/fundraising/${USER}/$1/$2
-      git checkout p4/main
-      git fetch origin p4/main
-      git pull
-      git checkout -b t/fundraising/${USER}/$1/$2
+      luser=$(echo ${USER} | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+      lwi=$(echo $1 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+      ldesc=$(echo $2 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+
+      BOLD_YELLOW="\033[1;33m"
+      NO_COLOR="\033[0m"
+
+      echo Syncing with p4/main
+      echo .
+      #git checkout p4/main
+      #git fetch origin p4/main
+      #git pull
+      echo .
+      echo -e "Create a new branch for ${BOLD_YELLOW}t/fundraising/${luser}/${lwi}/${ldesc}${NO_COLOR}"
+      echo .
+      #git checkout -b t/fundraising/${USER}/$1/$2
     fi
   };gimlet_branch'
