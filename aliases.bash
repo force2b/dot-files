@@ -151,3 +151,20 @@ alias backupstuff='function _backupstuff()
     rm ~/Documents/Backups/Brewfile
     mv Brewfile ~/Documents/Backups
   };_backupstuff'
+
+## ========================================
+## One Command Gimlet Branch Maker
+alias newbranch='function gimlet_branch()
+  {
+    if [[ -z $2 ]] || [[ -n $3 ]] ; then
+      echo "ERROR: Two parameters are required:"
+      echo "- Workitem number (w-1234567)"
+      echo "- Short description with NO spaces (some-work-description)"
+    else
+      echo Sycing with p4/main and creating a new branch for t/fundraising/${USER}/$1/$2
+      git checkout p4/main
+      git fetch origin p4/main
+      git pull
+      git checkout -b t/fundraising/${USER}/$1/$2
+    fi
+  };gimlet_branch'
