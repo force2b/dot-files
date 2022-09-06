@@ -61,6 +61,7 @@ alias spexy='function _startspexy()
 
 ## ===== Core Related Aliases =====
 alias cdcore='cd ~/blt/app/main/core'
+alias cdcoreg='cd ~/coredev/core-public'
 alias cdgimlet='cd ~/coredev/core-public'
 # alias cdpatch='cd ~/blt/app/240/patch/core'
 
