@@ -1,5 +1,6 @@
 # dconf write /org/gnome/desktop/screensaver/lock-enabled false
 alias resettimeout='dconf write /org/gnome/desktop/session/idle-delay "uint32 3600"'
+alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -q -L 2000; done'
 
 alias upgradeall='function _upgradeall()
   {
@@ -14,8 +15,13 @@ alias upgradeall='function _upgradeall()
 alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc /data/Github/dot-files/'
 alias loadprofile='source ~/.bash_profile'
 
+## ===== Core Related Aliases =====
 alias cdcore='cd /data/blt/app/main/core'
+alias cdcoreg='cd /data/core-public'
+alias cdgimlet='cd data/core-public'
 alias cdasl='cd /data/subledger/app/main/core'
+# alias cdpatch='cd /data/blt/app/240/patch/core'
+
 alias cdgh='cd /data/Github'
 alias cdnpsp='cd /data/npsp/'
 
@@ -43,6 +49,8 @@ alias sfdxlist='sfdx force:org:list'
 ## ====== Core Command s=====
 alias findtext='grep -rnw . -e'
 alias findfile='find . -type f -iname'
+alias findalias='alias | grep '
+alias findexport='export | grep '
 
 alias gs='git status'
 alias gp='git pull'
@@ -50,8 +58,6 @@ alias gc='git checkout'
 
 alias dir='ls -g'
 alias deldir='rm -rf'
-
-alias updateperforce='git pull && cleanlocal && p4get'
 
 alias p4ui='corecli gui:p4v'
 alias cleanlocal='git fetch origin && git reset --hard && git clean -f -d'
@@ -79,8 +85,9 @@ alias keyprefixes='stat -f "%Sm" -t "Build Data As Of %Y-%m-%d %H:%M" core-app/p
 alias uddybuddy='corecli udd:entity-generator'
 alias ezbpo='/data/tools/EzBPO'
 
-alias p4get='git sfdc p4get'
-alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt | pv -q -L 2000; done'
+# alias p4get='git sfdc p4get' # -- subledger
+alias p4get='git fetch origin p4/main'
+alias updateperforce='git pull && cleanlocal && p4get'
 
 ## Completely re-download a new version of the ASL repo
 alias recreateaslfolder='function _resetasl()
