@@ -1,7 +1,8 @@
 alias viprofile='code ~/.zshrc ~/GitHub/dot-files/aliases.bash  ~/GitHub/dot-files/exports.bash ~/.oh-my-zsh/oh-my-zsh.sh ~/GitHub/dot-files'
 alias loadprofile='source ~/.zshrc'
 
-alias upgradeall='brew update && brew upgrade --formula && brew upgrade --cask && omz update && sfdx update'
+alias upgradeall='brew update && brew upgrade --formula && brew upgrade --cask && omz update'
+alias sfdxupdate='npm update --global sfdx-cli && npm install -g @salesforce/cli@latest-rc'
 
 ## Dev Folder Access
 alias cdgh='cd ~/GitHub'
@@ -43,7 +44,6 @@ alias spanish='cci task run set_user_language -o param1 spanish --org '
 alias killjobs='cci task run unschedule_apex '
 alias orglist='cci org list'
 alias sfdxlist='sfdx force:org:list'
-alias sfdxupdate='npm update --global sfdx-cli && npm install -g @salesforce/cli@latest-rc'
 
 alias resetpackage='git checkout src/package.xml'
 alias gitreset='git reset --hard HEAD'
