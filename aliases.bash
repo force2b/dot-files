@@ -61,8 +61,7 @@ alias spexy='function _startspexy()
 
 ## ===== Core Related Aliases =====
 alias cdcore='cd ~/blt/app/main/core'
-alias cdcoreg='cd ~/coredev/core-public'
-alias cdgimlet='cd ~/coredev/core-public'
+alias cdf2='cd ~/coredev/core-public/core'
 # alias cdpatch='cd ~/blt/app/240/patch/core'
 
 
@@ -153,29 +152,30 @@ alias backupstuff='function _backupstuff()
   };_backupstuff'
 
 ## ========================================
-## One Command Gimlet Branch Maker
-alias newbranch='function gimlet_branch()
+## One Command Gimlet2 Branch Maker
+alias newf2branch='function gimlet_branch()
   {
+    LCASE_USER=$(echo ${USER} | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+    TEAM_BRANCH="t/fundraising"
+    BOLD_YELLOW="\033[1;33m"
+    NO_COLOR="\033[0m"
+    
     if [[ -z $2 ]] || [[ -n $3 ]] ; then
       echo "ERROR: Two parameters are required:"
       echo "- Workitem number (w-1234567)"
       echo "- Short description with NO spaces (some-work-description)"
     else
-      luser=$(echo ${USER} | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
-      lwi=$(echo $1 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
-      ldesc=$(echo $2 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
-
-      BOLD_YELLOW="\033[1;33m"
-      NO_COLOR="\033[0m"
+      LCASE_WORK_ITEM=$(echo $1 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+      LCASE_DESC=$(echo $2 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
 
       echo Syncing with p4/main
       echo .
-      #git checkout p4/main
-      #git fetch origin p4/main
-      #git pull
+      git checkout p4/main
+      git fetch origin p4/main
+      git pull
       echo .
-      echo -e "Create a new branch for ${BOLD_YELLOW}t/fundraising/${luser}/${lwi}/${ldesc}${NO_COLOR}"
+      echo -e "Create a new branch for ${BOLD_YELLOW}${TEAM_BRANCH}/${LCASE_USER}/${LCASE_WORK_ITEM}/${LCASE_DESC}${NO_COLOR}"
       echo .
-      #git checkout -b t/fundraising/${USER}/$1/$2
+      git checkout -b ${TEAM_BRANCH}/${LCASE_USER}/${LCASE_WORK_ITEM}/${LCASE_DESC}
     fi
   };gimlet_branch'
