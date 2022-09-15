@@ -17,8 +17,7 @@ alias loadprofile='source ~/.bash_profile'
 
 ## ===== Core Related Aliases =====
 alias cdcore='cd /data/blt/app/main/core'
-alias cdcoreg='cd /data/core-public'
-alias cdgimlet='cd data/core-public'
+alias cdf2='cd /data/core-public/core'
 alias cdasl='cd /data/subledger/app/main/core'
 # alias cdpatch='cd /data/blt/app/240/patch/core'
 
@@ -141,3 +140,32 @@ alias makedevorg='function _createdevorg()
     echo "sfdx alt:sfdx:enable -o {orgid}"
     echo "sfdx auth:web:login -a $1 -r https://$1-"$(date +%Y-%m-%d)".my.localhost.sfdcdev.salesforce.com:6101"
   };_createdevorg'
+
+## ========================================
+## One Command Gimlet2 Branch Maker
+alias newf2branch='function gimlet_branch()
+  {
+    LCASE_USER=$(echo ${USER} | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+    TEAM_BRANCH="t/fundraising"
+    BOLD_YELLOW="\033[1;33m"
+    NO_COLOR="\033[0m"
+    
+    if [[ -z $2 ]] || [[ -n $3 ]] ; then
+      echo "ERROR: Two parameters are required:"
+      echo "- Workitem number (w-1234567)"
+      echo "- Short description with NO spaces (some-work-description)"
+    else
+      LCASE_WORK_ITEM=$(echo $1 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+      LCASE_DESC=$(echo $2 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
+
+      echo Syncing with p4/main
+      echo .
+      git checkout p4/main
+      git fetch origin p4/main
+      git pull
+      echo .
+      echo -e "Create a new branch for ${BOLD_YELLOW}${TEAM_BRANCH}/${LCASE_USER}/${LCASE_WORK_ITEM}/${LCASE_DESC}${NO_COLOR}"
+      echo .
+      git checkout -b ${TEAM_BRANCH}/${LCASE_USER}/${LCASE_WORK_ITEM}/${LCASE_DESC}
+    fi
+  };gimlet_branch'
