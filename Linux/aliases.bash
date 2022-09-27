@@ -4,6 +4,7 @@ alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt
 
 alias upgradeall='function _upgradeall()
   {
+    tmpauth
     sudo apt upgrade
     brew update
     brew upgrade --formula
