@@ -15,6 +15,7 @@ alias upgradeall='function _upgradeall()
 
 alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc /data/Github/dot-files/'
 alias loadprofile='source ~/.bash_profile'
+alias linuxversion='uname -r && dpkg --list "linux-image*" | grep ^ii'
 
 ## ===== Core Related Aliases =====
 alias cdcore='cd /data/blt/app/main/core'
