@@ -7,8 +7,7 @@ alias upgradeall='function _upgradeall()
     tmpauth
     sudo apt upgrade
     brew update
-    brew upgrade --formula
-    brew upgrade --cask
+    brew upgrade
     omz update
     sfdx update
   };_upgradeall'
@@ -82,7 +81,7 @@ alias coremodules='code workspace-user.xml build/dev.properties'
 alias corefix='time corecli core:investigate'
 alias coredeleteorg='corecli db:sdb:drop-org'
 ## Dump the next 30 available key previxes
-alias keyprefixes='stat -f "%Sm" -t "Build Data As Of %Y-%m-%d %H:%M" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
+alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
 alias ezbpo='/data/tools/EzBPO'
 
