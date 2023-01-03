@@ -1,7 +1,6 @@
 # 2021-06-23: Commented out the openJdk path (from homebrew) to allow Core's java vm to be the default
 # export PATH="/usr/local/opt/openjdk/bin:/usr/local/bin:${PATH}"
 
-export CUMULUSCI_KEY=0a8xfc6d8e232g4h
 export CUMULUSCI_SYSTEM_CERTS="True"
 
 ## Core Development Helpers
