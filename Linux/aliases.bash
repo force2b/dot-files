@@ -16,6 +16,8 @@ alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc /data/Github/dot-files
 alias loadprofile='source ~/.bash_profile'
 alias linuxversion='uname -r && dpkg --list "linux-image*" | grep ^ii'
 
+alias killjavatasks='jps -v|grep -v "idea"|cut -d" " -f1|xargs kill -9'
+
 ## ===== Core Related Aliases =====
 alias cdcore='cd /data/blt/app/main/core'
 alias cdf2='cd /data/core-public/core'
@@ -71,6 +73,7 @@ alias corebuildpre='time corecli core:build clean pre'
 alias corebuildpost='time corecli core:build post'
 alias corebuildfull='time corebuild clean pre setup compile post plsql'
 alias coreorgs='corecli db:sdb:top-orgs -l 25'
+alias coreorglist='corecli db:sdb:top-orgs -l 25'
 alias corepurgeorgs='corecli db:sdb:drop-trial-orgs -m 30'
 alias coresync='time corecli core:sync'
 alias corestart='time corecli core:start -b'
@@ -84,6 +87,7 @@ alias coredeleteorg='corecli db:sdb:drop-org'
 alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
 alias ezbpo='/data/tools/EzBPO'
+alias corestatus='corecli status'
 
 # alias p4get='git sfdc p4get' # -- subledger
 alias p4get='git fetch origin p4/main'
