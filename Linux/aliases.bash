@@ -10,6 +10,7 @@ alias upgradeall='function _upgradeall()
     brew upgrade
     omz update
     sfdx update
+    cdf2
   };_upgradeall'
 
 alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc /data/Github/dot-files/'
@@ -71,43 +72,31 @@ alias coredbstop='corecli db:stop'
 alias corebuild='time corecli core:build'
 alias corebuildpre='time corecli core:build clean pre'
 alias corebuildpost='time corecli core:build post'
-alias corebuildfull='time corebuild clean pre setup compile post plsql'
+alias corebuildfull='time corebuild clean setup compile plsql'
 alias coreorgs='corecli db:sdb:top-orgs -l 25'
 alias coreorglist='corecli db:sdb:top-orgs -l 25'
 alias corepurgeorgs='corecli db:sdb:drop-trial-orgs -m 30'
-alias coresync='time corecli core:sync'
+alias coresync='time corecli core:sync --no-pre'
+alias coresyncpre='time corecli core:sync'
 alias corestart='time corecli core:start -b'
+alias corestartfast='time corecli core:start -b --no-debug'
 alias corerestart='time (corestop && echo "Waiting 10 seconds" && sleep 10 && echo "Starting" && corestart)'
 alias corestop='corecli core:stop'
 alias coreupdate='honuadmin update --all'
-alias coremodules='code workspace-user.xml build/dev.properties'
+alias coremodules='code workspace-user.xml build/dev.properties build/env-dev.properties build/user.properties'
 alias corefix='time corecli core:investigate'
+alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
-## Dump the next 30 available key previxes
-alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
+
 alias uddybuddy='corecli udd:entity-generator'
 alias ezbpo='/data/tools/EzBPO'
-alias corestatus='corecli status'
+
+## Dump the next 30 available key previxes
+alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 
 # alias p4get='git sfdc p4get' # -- subledger
 alias p4get='git fetch origin p4/main'
 alias updateperforce='git pull && cleanlocal && p4get'
-
-## Completely re-download a new version of the ASL repo
-alias recreateaslfolder='function _resetasl()
-  {
-    cd /data
-    mv subledger subledger-"$(date +%Y-%m-%d)"
-    mkdir subledger
-    cd subledger
-    git clone git@git.soma.salesforce.com:gimlet-repos/team-abacus-main.git .
-    cd app/main/core
-    cp /data/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .s
-    cp /data/subledger-"$(date +%Y-%m-%d)"/app/main/core/build/dev.properties build/
-    time git sfdc p4get
-    corecli core:build clean
-  };_resetasl'
-
 
 ## ========================================
 ## One Command Local Org Builder
