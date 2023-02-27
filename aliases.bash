@@ -71,9 +71,10 @@ alias p4ui='corecli gui:p4v'
 alias coreide='corecli --intellij'
 ## Runs the two steps needed after the pre/compile steps run by the above
 alias coredb='time corecli core:build post plsql'
-alias coredblist='corecli db:list'
 alias corepost='time corecli core:build post'
-## Sync with the artifacts param as per a 3/3/21 request from the corecli pilot team
+alias coredblist='corecli db:list'
+alias coredbstart='corecli db:start'
+alias coredbstop='corecli db:stop'
 alias coresync='time corecli core:sync'
 alias coresynclts='time corecli core:lts-sync'
 ## Runs a full build of everything
