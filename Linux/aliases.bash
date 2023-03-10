@@ -10,7 +10,6 @@ alias upgradeall='function _upgradeall()
     brew upgrade
     omz update
     sfdx update
-    cdf2
   };_upgradeall'
 
 alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc /data/Github/dot-files/'
@@ -22,8 +21,6 @@ alias killjavatasks='jps -v|grep -v "idea"|cut -d" " -f1|xargs kill -9'
 ## ===== Core Related Aliases =====
 alias cdcore='cd /data/blt/app/main/core'
 alias cdf2='cd /data/core-public/core'
-alias cdasl='cd /data/subledger/app/main/core'
-# alias cdpatch='cd /data/blt/app/240/patch/core'
 
 alias cdgh='cd /data/Github'
 alias cdnpsp='cd /data/npsp/'
@@ -78,7 +75,7 @@ alias coreorglist='corecli db:sdb:top-orgs -l 25'
 alias corepurgeorgs='corecli db:sdb:drop-trial-orgs -m 30'
 alias coresync='time corecli core:sync --no-pre'
 alias coresyncpre='time corecli core:sync'
-alias corestart='time corecli core:start -b'
+alias corestart='time corecli core:start -b && /data/corestartalert.sh'
 alias corestartfast='time corecli core:start -b --no-debug'
 alias corerestart='time (corestop && echo "Waiting 10 seconds" && sleep 10 && echo "Starting" && corestart)'
 alias corestop='corecli core:stop'
