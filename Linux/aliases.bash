@@ -66,14 +66,13 @@ alias coredb='time corecli core:build post plsql'
 alias coredblist='corecli db:list'
 alias coredbstart='corecli db:start'
 alias coredbstop='corecli db:stop'
-alias corebuild='time corecli core:build'
 alias corebuildpre='time corecli core:build pre'
 alias corebuildpost='time corecli core:build post'
-alias corebuildfull='time corebuild clean pre setup compile plsql post'
+alias corebuildfull='time corebuild clean pre setup compile plsql post && post_job_in_slack.sh'
 alias coreorgs='corecli db:sdb:top-orgs -l 25'
 alias coreorglist='corecli db:sdb:top-orgs -l 25'
 alias corepurgeorgs='corecli db:sdb:drop-trial-orgs -m 100'
-alias coresync='time corecli core:sync'
+alias coresync='time corecli core:sync && post_job_in_slack.sh'
 alias corestart='time corecli core:start -b && /data/corestartalert.sh'
 alias corestartfast='time corecli core:start -b --no-debug'
 alias corerestart='time (corestop && echo "Waiting 10 seconds" && sleep 10 && echo "Starting" && corestart)'
@@ -93,6 +92,14 @@ alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefi
 # alias p4get='git sfdc p4get' # -- subledger
 alias p4get='git fetch origin p4/main'
 alias updateperforce='git pull && cleanlocal && p4get'
+
+alias corebuild='function _corebuild()
+  {
+    echo "Running corecli $1 $2 $3 $4 $5 $6 $7 $8 $9"
+    echo ""
+    time corecli core:build $1 $2 $3 $4 $5 $6 $7 $8 $9 && post_job_in_slack.sh
+  };_corebuild'
+
 
 ## ========================================
 ## One Command Local Org Builder
