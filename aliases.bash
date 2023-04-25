@@ -64,25 +64,26 @@ alias cdcore='cd ~/blt/app/main/core'
 alias cdf2='cd ~/coredev/core-public/core'
 # alias cdpatch='cd ~/blt/app/240/patch/core'
 
-
 ## ===== Core Build Commands ======
 alias p4ui='corecli gui:p4v'
 ## This runs pre and then runs compile in the IDE
 alias coreide='corecli --intellij'
 ## Runs the two steps needed after the pre/compile steps run by the above
-alias coredb='time corecli core:build post plsql'
-alias corepost='time corecli core:build post'
 alias coredblist='corecli db:list'
 alias coredbstart='corecli db:start'
 alias coredbstop='corecli db:stop'
-alias coresync='time corecli core:sync'
+alias coresync='corecli2 core:sync'
 alias coresynclts='time corecli core:lts-sync'
 ## Runs a full build of everything
-alias corebuild='time corecli core:build'
+alias corebuild='corecli2 core:build'
+alias corebuildpre='corecli2 core:build pre'
+alias corebuilddb='corecli2 core:build post plsql'
+alias corebuildpost='corecli2 core:build post'
+alias corebuildfull='corecli2 core:build clean pre setup compile plsql post'
 ## Figure out what went wrong
-alias corefix='time corecli core:investigate'
+alias corefix='corecli2 core:investigate'
 ## Stop/Stop the local instance
-alias corestart='time corecli core:start -b'
+alias corestart='corecli core:start -b && waitonhost.sh https://localhost:6101'
 alias corestop='corecli core:stop'
 alias corerestart='time (corestop && echo "Waiting 10 seconds" && sleep 10 && echo "Starting" && corestart)'
 ## Dump the next 30 available key previxes
@@ -95,8 +96,24 @@ alias corehelp='corecli --ihelp'
 alias coremodules='code workspace-user.xml ~/blt/app/main/defaultmodule.txt'
 
 ## ===== Gimlet V2 =====
-alias updateperforce='git pull && cleanlocal && p4get'
-alias p4get='git sfdc p4get'
+# alias updateperforce='git pull && cleanlocal && p4get'
+# alias p4get='git sfdc p4get'
+
+alias corecli2='function _corecli2()
+  {
+    echo "Running corecli $1 $2 $3 $4 $5 $6 $7 $8 $9"
+    echo ""
+    
+    START=$(date +%s)
+    COMMANDS="$2 $3 $4 $5 $6 $7 $8 $9"
+    TRIMMED="${COMMANDS%"${COMMANDS##*[![:space:]]}"}"
+    
+    time corecli $1 $2 $3 $4 $5 $6 $7 $8 $9
+    
+    if [ $? -eq 0 ]; then
+      post_job_in_slack.sh $1 $TRIMMED \(Duration: $(( $(date +%s) - $START )) seconds\)
+    fi
+  };_corecli2'
 
 
 alias aslclean='function _clean_asl_build_directory()
