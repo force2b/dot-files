@@ -62,24 +62,25 @@ alias deldir='rm -rf'
 alias p4ui='corecli gui:p4v'
 alias cleanlocal='git fetch origin && git reset --hard && git clean -f -d'
 alias coreide='corecli --intellij'
-alias coredb='time corecli core:build post plsql'
 alias coredblist='corecli db:list'
 alias coredbstart='corecli db:start'
 alias coredbstop='corecli db:stop'
-alias corebuildpre='time corecli core:build pre'
-alias corebuildpost='time corecli core:build post'
-alias corebuildfull='time corebuild clean pre setup compile plsql post && post_job_in_slack.sh'
+alias corebuild='corecli2 core:build'
+alias corebuildpre='corecli2 core:build pre'
+alias corebuilddb='corecli2 core:build post plsql'
+alias corebuildpost='corecli2 core:build post'
+alias corebuildfull='corecli2 core:build clean pre setup compile plsql post'
 alias coreorgs='corecli db:sdb:top-orgs -l 25'
 alias coreorglist='corecli db:sdb:top-orgs -l 25'
 alias corepurgeorgs='corecli db:sdb:drop-trial-orgs -m 100'
-alias coresync='time corecli core:sync && post_job_in_slack.sh'
-alias corestart='time corecli core:start -b && /data/corestartalert.sh'
+alias coresync='corecli2 core:sync'
+alias corestart='corecli core:start -b && waitonhost.sh https://smithmicha-wsl1:6101'
 alias corestartfast='time corecli core:start -b --no-debug'
 alias corerestart='time (corestop && echo "Waiting 10 seconds" && sleep 10 && echo "Starting" && corestart)'
 alias corestop='corecli core:stop'
 alias coreupdate='honuadmin update --all'
 alias coremodules='code workspace-user.xml build/dev.properties build/env-dev.properties build/user.properties'
-alias corefix='time corecli core:investigate'
+alias corefix='corecli2 core:investigate'
 alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
 
@@ -90,16 +91,24 @@ alias ezbpo='/data/tools/EzBPO'
 alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 
 # alias p4get='git sfdc p4get' # -- subledger
-alias p4get='git fetch origin p4/main'
-alias updateperforce='git pull && cleanlocal && p4get'
+# alias p4get='git fetch origin p4/main'
+# alias updateperforce='git pull && cleanlocal && p4get'
 
-alias corebuild='function _corebuild()
+alias corecli2='function _corecli2()
   {
     echo "Running corecli $1 $2 $3 $4 $5 $6 $7 $8 $9"
     echo ""
-    time corecli core:build $1 $2 $3 $4 $5 $6 $7 $8 $9 && post_job_in_slack.sh
-  };_corebuild'
-
+    
+    START=$(date +%s)
+    COMMANDS="$2 $3 $4 $5 $6 $7 $8 $9"
+    TRIMMED="${COMMANDS%"${COMMANDS##*[![:space:]]}"}"
+    
+    time corecli $1 $2 $3 $4 $5 $6 $7 $8 $9
+    
+    if [ $? -eq 0 ]; then
+      post_job_in_slack.sh $1 $TRIMMED \(Duration: $(( $(date +%s) - $START )) seconds\)
+    fi
+  };_corecli2'
 
 ## ========================================
 ## One Command Local Org Builder
