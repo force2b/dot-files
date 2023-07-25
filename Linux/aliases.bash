@@ -12,9 +12,10 @@ alias upgradeall='function _upgradeall()
     sfdx update
   };_upgradeall'
 
-alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc /data/Github/dot-files/'
+alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc ~/blt/extra-tools/intellij/intellij-sfdc/bin/idea.properties /data/Github/dot-files/'
 alias loadprofile='source ~/.bash_profile'
 alias linuxversion='uname -r && dpkg --list "linux-image*" | grep ^ii'
+alias ftc2start='sudo iptables -A INPUT -i docker0 -j ACCEPT;ftest start'
 
 alias killjavatasks='jps -v|grep -v "idea"|cut -d" " -f1|xargs kill -9'
 
