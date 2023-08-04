@@ -28,3 +28,6 @@ export PATH="$PATH:/home/smithmichael/.local/bin"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/opt/node@16/bin"
 export PATH="$PATH:$VOLTA_HOME/bin"
 
+export DOCKER_CONFIG='/var/run/config.json'
+export DOCKER_SOCKET='/var/run/docker.sock'
+
