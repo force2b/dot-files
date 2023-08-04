@@ -1,8 +1,7 @@
 alias viprofile='code ~/.zshrc ~/GitHub/dot-files/aliases.bash  ~/GitHub/dot-files/exports.bash ~/.oh-my-zsh/oh-my-zsh.sh ~/GitHub/dot-files'
 alias loadprofile='source ~/.zshrc'
 
-alias upgradeall='brew update && brew upgrade --formula && brew upgrade --cask && omz update'
-alias sfdxupdate='npm update --global sfdx-cli && npm install -g @salesforce/cli@latest-rc'
+alias upgradeall='brew update && brew upgrade --formula && brew upgrade --cask && sf update && omz update'
 
 ## Dev Folder Access
 alias cdgh='cd ~/GitHub'
@@ -29,21 +28,12 @@ alias launchorg='cci org browser '
 alias runtests='cci task run run_tests'
 alias runtask='cci task run '
 alias runflow='cci flow run '
-alias updatedevorg='function _updatedevorg()
-  { 
-    sfdx force:source:push -f -u Cumulus__$1 $2;
-  };_updatedevorg'
-alias updatedevorgfull='function _updatedevorgfull()
-  { 
-    cci task run unschedule_apex --org $1 $2;
-    sfdx force:source:push -f -u Cumulus__$1 $2;
-  };_updatedevorgfull'
 alias runtest='cci task run run_tests -o test_name_match '
 alias english='cci task run set_user_language -o param1 english --org '
 alias spanish='cci task run set_user_language -o param1 spanish --org '
 alias killjobs='cci task run unschedule_apex '
 alias orglist='cci org list'
-alias sfdxlist='sfdx force:org:list'
+alias sfdxlist='sf org list'
 
 alias resetpackage='git checkout src/package.xml'
 alias gitreset='git reset --hard HEAD'
@@ -115,34 +105,6 @@ alias corecli2='function _corecli2()
     fi
   };_corecli2'
 
-
-alias aslclean='function _clean_asl_build_directory()
-{
-  rm ../.DS_Store
-  rm ../../.DS_Store
-  rm ../../../.DS_Store
-  git fetch origin
-  git reset --hard
-  git clean -f -d
-  git pull
-  git sfdc p4get
-};_clean_asl_build_directory'
-
-## Completely re-download a new version of the ASL repo
-alias recreateaslfolder='function _resetasl()
-  {
-    cd /coredev
-    mv subledger subledger-"$(date +%Y-%m-%d)"
-    mkdir subledger
-    cd subledger
-    git clone git@git.soma.salesforce.com:gimlet-repos/team-abacus-main.git .
-    cd app/main/core
-    cp /coredev/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .
-    cp /coredev/subledger-"$(date +%Y-%m-%d)"/app/main/core/workspace-user.xml .
-    time git sfdc p4get
-    corecli core:build clean
-  };_resetasl'
-
 ## ========================================
 ## One Command Scratch Org Builder
 alias scratchorg='function _scratchorg()
@@ -168,32 +130,3 @@ alias backupstuff='function _backupstuff()
     rm ~/Documents/Backups/Brewfile
     mv Brewfile ~/Documents/Backups
   };_backupstuff'
-
-## ========================================
-## One Command Gimlet2 Branch Maker
-alias newf2branch='function gimlet_branch()
-  {
-    LCASE_USER=$(echo ${USER} | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
-    TEAM_BRANCH="t/fundraising"
-    BOLD_YELLOW="\033[1;33m"
-    NO_COLOR="\033[0m"
-    
-    if [[ -z $2 ]] || [[ -n $3 ]] ; then
-      echo "ERROR: Two parameters are required:"
-      echo "- Workitem number (w-1234567)"
-      echo "- Short description with NO spaces (some-work-description)"
-    else
-      LCASE_WORK_ITEM=$(echo $1 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
-      LCASE_DESC=$(echo $2 | tr '"'"'[:upper:]'"'"' '"'"'[:lower:]'"'"' )
-
-      echo Syncing with p4/main
-      echo .
-      git checkout p4/main
-      git fetch origin p4/main
-      git pull
-      echo .
-      echo -e "Create a new branch for ${BOLD_YELLOW}${TEAM_BRANCH}/${LCASE_USER}/${LCASE_WORK_ITEM}/${LCASE_DESC}${NO_COLOR}"
-      echo .
-      git checkout -b ${TEAM_BRANCH}/${LCASE_USER}/${LCASE_WORK_ITEM}/${LCASE_DESC}
-    fi
-  };gimlet_branch'
