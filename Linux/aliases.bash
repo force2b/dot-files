@@ -9,7 +9,7 @@ alias upgradeall='function _upgradeall()
     brew update
     brew upgrade
     omz update
-    sfdx update
+    ftest update
   };_upgradeall'
 
 alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc ~/blt/extra-tools/intellij/intellij-sfdc/bin/idea.properties /data/Github/dot-files/'
@@ -20,9 +20,9 @@ alias ftc2start='sudo iptables -A INPUT -i docker0 -j ACCEPT;ftest start'
 alias killjavatasks='jps -v|grep -v "idea"|cut -d" " -f1|xargs kill -9'
 
 ## ===== Core Related Aliases =====
-alias cdcore='cd /data/blt/app/main/core'
-alias cdf2='cd /data/core-public/core'
+alias cdcore='cd /data/core-public/core'
 
+alias cdp4='cd /data/blt/app/main/core'
 alias cdgh='cd /data/Github'
 alias cdnpsp='cd /data/npsp/'
 
@@ -31,21 +31,9 @@ alias launchorg='cci org browser '
 alias runtests='cci task run run_tests'
 alias runtask='cci task run '
 alias runflow='cci flow run '
-alias updatedevorg='function _updatedevorg()
-  { 
-    sfdx force:source:push -f -u Cumulus__$1 $2;
-  };_updatedevorg'
-alias updatedevorgfull='function _updatedevorgfull()
-  { 
-    cci task run unschedule_apex --org $1 $2;
-    sfdx force:source:push -f -u Cumulus__$1 $2;
-  };_updatedevorgfull'
-alias runtest='cci task run run_tests -o test_name_match '
-alias english='cci task run set_user_language -o param1 english --org '
-alias spanish='cci task run set_user_language -o param1 spanish --org '
 alias killjobs='cci task run unschedule_apex '
 alias orglist='cci org list'
-alias sfdxlist='sfdx force:org:list'
+alias sfdxlist='sf force:org:list'
 
 ## ====== Core Command s=====
 alias findtext='grep -rnw . -e'
@@ -84,9 +72,6 @@ alias coremodules='code workspace-user.xml build/dev.properties build/env-dev.pr
 alias corefix='corecli2 core:investigate'
 alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
-
-alias uddybuddy='corecli udd:entity-generator'
-alias ezbpo='/data/tools/EzBPO'
 
 ## Dump the next 30 available key previxes
 alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
