@@ -73,6 +73,12 @@ alias corefix='corecli2 core:investigate'
 alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
 
+alias bazeldb='bazel run //db/tools:sdb.start'
+alias bazeldbschema='bazel run //:db-schema-update'
+alias bazelbuild='bazel build //:core'
+alias bazelstart='gnome-terminal --tab -e "bazel run //:core"'
+
+
 ## Dump the next 30 available key previxes
 alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
 

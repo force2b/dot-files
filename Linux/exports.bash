@@ -20,13 +20,13 @@ export NODE_EXTRA_CA_CERTS="$HOME/npm-sfdc-certs.pem"
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 ## PATH Updates 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$PATH:/data/sfdx/bin"
+#export VOLTA_HOME="$HOME/.volta"
+#export PATH="$PATH:/data/sfdx/bin"
 export PATH="$PATH:/usr/local/bin"
 # Created by `pipx` on 2022-01-11 19:09:01
 export PATH="$PATH:/home/smithmichael/.local/bin"
-export PATH="$PATH:/home/linuxbrew/.linuxbrew/opt/node@16/bin"
-export PATH="$PATH:$VOLTA_HOME/bin"
+#export PATH="$PATH:/home/linuxbrew/.linuxbrew/opt/node@16/bin"
+#export PATH="$PATH:$VOLTA_HOME/bin"
 
 export DOCKER_CONFIG='/var/run/config.json'
 export DOCKER_SOCKET='/var/run/docker.sock'
