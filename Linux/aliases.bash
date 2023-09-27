@@ -73,10 +73,10 @@ alias corefix='corecli2 core:investigate'
 alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
 
-alias bazeldb='bazel run //db/tools:sdb.start'
-alias bazeldbschema='bazel run //:db-schema-update'
-alias bazelbuild='bazel build //:core'
-alias bazelstart='gnome-terminal --tab -e "bazel run //:core"'
+alias bazeldb='time bazel run //db/tools:sdb.start'
+alias bazeldbschema='time bazel run //:db-schema-update'
+alias bazelbuild='time bazel build //:core'
+alias bazelstart='gnome-terminal --tab --title "Core Execution" -- bazel run //:core'
 
 
 ## Dump the next 30 available key previxes
