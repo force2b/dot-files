@@ -73,10 +73,10 @@ alias corefix='corecli2 core:investigate'
 alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
 
-alias bazeldb='time bazel run //db/tools:sdb.start'
-alias bazeldbschema='time bazel run //:db-schema-update'
-alias bazelbuild='time bazel build //:core'
-alias bazelstart='gnome-terminal --tab --title "Core Execution" -- bazel run //:core'
+alias bazeldb='bazel run //db/tools:sdb.start'
+alias bazeldbschema='bazel2 run //:db-schema-update'
+alias bazelbuild='bazel2 build //:core'
+alias bazelstart='gnome-terminal --tab --title "Core Execution" -- bazel run //:core  && waitonhost.sh https://smithmicha-wsl1:6101'
 
 
 ## Dump the next 30 available key previxes
@@ -102,6 +102,22 @@ alias corecli2='function _corecli2()
     fi
   };_corecli2'
 
+
+alias bazel2='function _bazel2()
+  {
+    echo "Running bazel $1 $2 $3 $4 $5 $6 $7 $8 $9"
+    echo ""
+    
+    START=$(date +%s)
+    COMMANDS="$2 $3 $4 $5 $6 $7 $8 $9"
+    TRIMMED="${COMMANDS%"${COMMANDS##*[![:space:]]}"}"
+    
+    time bazel $1 $2 $3 $4 $5 $6 $7 $8 $9
+    
+    if [ $? -eq 0 ]; then
+      post_job_in_slack.sh $1 $TRIMMED \(Duration: $(( $(date +%s) - $START )) seconds\)
+    fi
+  };_bazel2'
 ## ========================================
 ## One Command Local Org Builder
 alias makeorg='function _createlocalorg()
