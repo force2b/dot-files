@@ -80,7 +80,7 @@ alias bazelide='idea ./.ijwb'
 alias ftc2='sudo iptables -A INPUT -i docker0 -j ACCEPT;ftest start'
 
 ## Dump the next 30 available key previxes
-alias keyprefixes='stat -c "Build Data As Of %y" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
+alias keyprefixes='stat -c "Build Data As Of %y" bazel-bin/core-app/post_final_generated/plsql-gen/post/global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" bazel-bin/core-app/post_final_generated/plsql-gen/post/global/gKeyPrefixes.sql'
 
 # alias p4get='git sfdc p4get' # -- subledger
 # alias p4get='git fetch origin p4/main'
