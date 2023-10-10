@@ -77,7 +77,7 @@ alias corestart='corecli core:start -b && waitonhost.sh https://localhost:6101'
 alias corestop='corecli core:stop'
 alias corerestart='time (corestop && echo "Waiting 10 seconds" && sleep 10 && echo "Starting" && corestart)'
 ## Dump the next 30 available key previxes
-alias keyprefixes='stat -f "%Sm" -t "Build Data As Of %Y-%m-%d %H:%M" core-app/plsql-global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" core-app/plsql-global/gKeyPrefixes.sql'
+alias keyprefixes='stat -f "%Sm" -t "Build Data As Of %Y-%m-%d %H:%M" bazel-bin/core-app/post_final_generated/plsql-gen/post/global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" bazel-bin/core-app/post_final_generated/plsql-gen/post/global/gKeyPrefixes.sql'
 alias uddybuddy='corecli udd:entity-generator'
 # alias tmpauth='open http://tmp-auth.slb.sfdc.net/saml_tmp --background'
 ## Force an update of the main tools
