@@ -74,6 +74,7 @@ alias coredeleteorg='corecli db:sdb:drop-org'
 alias bazeldb='bazel run //db/tools:sdb.start'
 alias bazeldbschema='bazel2 run //:db-schema-update'
 alias bazelbuild='bazel2 build //:core'
+alias bazelpost='bazel run //:post-final'
 alias bazelstart='gnome-terminal --tab --title "Core Execution" -- bazel run //:core  && waitonhost.sh https://smithmicha-wsl1:6101'
 alias bazelide='idea ./.ijwb'
 
