@@ -15,7 +15,7 @@ export BLT_HOME=/data/blt
 # export NODE_EXTRA_CA_CERTS="$HOME/npm-sfdc-certs.pem"
 # export NODE_EXTRA_CA_CERTS=/data/blt/app/main/core/sfdc-test/config/sfdc-dev-root.crt 
 # export SFDX_NPM_REGISTRY=http://platform-cli-registry.eng.sfdc.net:4880/
-export SFDX_NPM_REGISTRY=https://nexus-proxy-prd.soma.salesforce.com/nexus/content/groups/npm-all/
+export SFDX_NPM_REGISTRY=https://nexus-proxy.repo.local.sfdc.net/nexus/content/groups/npm-all/
 export NODE_EXTRA_CA_CERTS="$HOME/npm-sfdc-certs.pem"
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
