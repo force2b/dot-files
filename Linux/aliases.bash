@@ -55,6 +55,7 @@ alias corepurgeorgs='corecli db:sdb:drop-trial-orgs -m 100'
 alias coremodules='code build/dev.properties build/env-dev.properties build/user.properties'
 alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
+alias corecerts='corecli tls:create-certificates tls:install-certificates'
 
 alias bazelstart='gnome-terminal --tab --title "Core Execution" -- bazel run //:core  && waitonhost.sh https://smithmicha-wsl1:6101'
 alias bazeldb='bazel run //db/tools:sdb.start'
