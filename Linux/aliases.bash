@@ -103,7 +103,7 @@ alias bazelupdatesdb='function _bazelupdatesdb()
       cd ..
       bazel run //:db-schema-update
       post_job_in_slack.sh $1 $TRIMMED \(Duration: $(( $(date +%s) - $START )) seconds\)
-    el
+    else
       cd ..
     fi
   };_bazelupdatesdb'
