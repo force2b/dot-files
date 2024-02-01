@@ -20,6 +20,7 @@ For more information go to [http://www.salesforce.org/nonprofit/nonprofit-succes
 * [Ask for support or questions with other Nonprofit Users and Partners](https://trailhead.salesforce.com/trailblazer-community/groups/0F9300000001ocxCAA)
 * [Nonprofit Success Pack (NPSP) Documentation](https://help.salesforce.com/s/articleView?id=sfdo.Nonprofit_Success_Pack.htm)
 * [Release Notes](https://sfdc.co/bnL4Cb)
+* [Known Issues](https://issues.salesforce.com/#f[sfcategoryfull]=Nonprofit%7CNonprofit%20Success%20Pack%20(NPSP)%20-%20Managed%20Package)
 
 ###  Try out the Nonprofit Success Pack
 
