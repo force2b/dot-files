@@ -7,11 +7,11 @@ In 2023, Salesforce launched the Nonprofit Cloud which is at the foundation of S
 * Salesforce will to continue support our managed package products, including the Nonprofit Success Pack. Tens of thousands of customers use our current managed package products to achieve great results. 
 * Many of our ISV partners are building fantastic solutions for our managed packages as well as the new Nonprofit Cloud. We’re working with these partners to ensure that they understand our new product architecture, and are able to bring their years of experience and learnings to the new Nonprofit Cloud.
 * Salesforce remains deeply committed to nonprofit pricing. There are many new capabilities within the new Nonprofit Cloud and we work hard to maintain our nonprofit discounts across the new products. Our goals are to simplify access to nonprofit technology and make it easier for customers to get started.
-* Salesforce continues to grant free licenses with the Power of Us Program for the managed packages and Nonprofit Cloud. This is the first time we’ve been able to expand the Power of Us program to include nonprofit-specific products. We’re very excited about the potential for these new inclusions to accelerate and deepen the nonprofit experience.
+* Salesforce continues to grant free licenses with the Power of Us Program for the managed packages and Nonprofit Cloud. With Nonprofit Cloud, the Power of Us program also includes more features than ever to accelerate and deepen the nonprofit experience.
 * Take the new product for a test drive. Sign-up for a [Nonprofit Cloud Trial org](https://help.salesforce.com/s/articleView?id=sfdo.NPC_Create_Nonprofit_Cloud_Trial_Org.htm&type=5).
 * Visit the [Nonprofit Hub](https://trailhead.salesforce.com/trailblazer-community/groups/0F9300000001ocxCAA?tab=discussion&sort=LAST_MODIFIED_DATE_DESC) to chat with others about how nonprofits use Salesforce for social good.
 
-
+---
 ### For Nonprofit Success Pack Users and admins
 
 * Check out existing [Nonprofit feature and enhancement requests](https://ideas.salesforce.com/s/search#t=All&sort=relevancy&f:@sfcategoryfull=[Nonprofit%7CNonprofit%20Cloud,Nonprofit%7CNonprofit%20Success%20Pack%20(NPSP)%20-%20Managed%20Package]).
