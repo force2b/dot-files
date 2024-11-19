@@ -57,10 +57,13 @@ alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
 alias corecerts='corecli tls:create-certificates tls:install-certificates'
 
-alias bazelstart='gnome-terminal --tab --title "Core Execution" -- bazel run //:core  && waitonhost.sh https://smithmicha-wsl1:6101'
+alias bazelstart='gnome-terminal --tab-with-profile=Task --title "Core Execution" -- bazel run //:core  && waitonhost.sh https://smithmicha-wsl1:6101'
 alias bazeldb='bazel run //db/tools:sdb.start'
-alias bazeldbschema='bazel2 run //:db-schema-update'
-alias bazelbuild='bazel2 build //:core'
+alias bazeldb-schema='bazel run //:db-schema-update'
+alias bazeldb-sdbgo='bazel run //db/tools:sdb.go'
+alias bazeldb-plsql='bazel run //:plsql'
+alias bazeldb-schemasync='cd build && ant sdb.schemasync && cd ..'
+alias bazelbuild='bazel build //:core'
 alias bazelpost='bazel run //:post-final'
 alias bazelclean='bazel clean'
 alias bazelide='idea ./.ijwb'
@@ -81,16 +84,12 @@ alias bazel2='function _bazel2()
     COMMANDS="$2 $3 $4 $5 $6 $7 $8 $9"
     TRIMMED="${COMMANDS%"${COMMANDS##*[![:space:]]}"}"
     
-    time bazel $1 $2 $3 $4 $5 $6 $7 $8 $9
-    
-    if [ $? -eq 0 ]; then
-      post_job_in_slack.sh $1 $TRIMMED \(Duration: $(( $(date +%s) - $START )) seconds\)
-    fi
+    time bazel $1 $2 $3 $4 $5 $6 $7 $8 $9   
   };_bazel2'
 
 ## ========================================
 ## Run the full bazel database update process. Normally not fully required
-alias bazelupdatesdb='function _bazelupdatesdb()
+alias bazeldb-update='function _bazelupdatesdb()
   {
     echo "Running ant sdb.schemasync and bazel schema-update "
     echo ""
@@ -103,7 +102,6 @@ alias bazelupdatesdb='function _bazelupdatesdb()
     if [ $? -eq 0 ]; then
       cd ..
       bazel run //:db-schema-update
-      post_job_in_slack.sh $1 $TRIMMED \(Duration: $(( $(date +%s) - $START )) seconds\)
     else
       cd ..
     fi
