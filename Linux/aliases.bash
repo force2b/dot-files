@@ -59,10 +59,11 @@ alias corecerts='corecli tls:create-certificates tls:install-certificates'
 
 alias bazelstart='gnome-terminal --tab-with-profile=Task --title "Core Execution" -- bazel run //:core  && waitonhost.sh https://smithmicha-wsl1:6101'
 alias bazeldb='bazel run //db/tools:sdb.start'
-alias bazeldb-schema='bazel run //:db-schema-update'
+alias bazeldb-update='bazel run //:db-schema-update'
 alias bazeldb-sdbgo='bazel run //db/tools:sdb.go'
 alias bazeldb-plsql='bazel run //:plsql'
 alias bazeldb-schemasync='cd build && ant sdb.schemasync && cd ..'
+alias bazeldb-fix='bazel run //db/tools:sdb.upgrade && bazel run //db/tools:sdb.grant && bazel run //:db-schema-update'
 alias bazelbuild='bazel build //:core'
 alias bazelpost='bazel run //:post-final'
 alias bazelclean='bazel clean'
@@ -72,37 +73,3 @@ alias ftc2='sudo iptables -A INPUT -i docker0 -j ACCEPT;ftest start'
 
 ## Dump the next 30 available key previxes
 alias keyprefixes='stat -c "Build Data As Of %y" bazel-bin/core-app/post_final_generated/plsql-gen/post/global/gKeyPrefixes.sql && grep -A 2 "The next 30 available" bazel-bin/core-app/post_final_generated/plsql-gen/post/global/gKeyPrefixes.sql'
-
-## ========================================
-## Override bazel to also post in slack when finished
-alias bazel2='function _bazel2()
-  {
-    echo "Running bazel $1 $2 $3 $4 $5 $6 $7 $8 $9"
-    echo ""
-    
-    START=$(date +%s)
-    COMMANDS="$2 $3 $4 $5 $6 $7 $8 $9"
-    TRIMMED="${COMMANDS%"${COMMANDS##*[![:space:]]}"}"
-    
-    time bazel $1 $2 $3 $4 $5 $6 $7 $8 $9   
-  };_bazel2'
-
-## ========================================
-## Run the full bazel database update process. Normally not fully required
-alias bazeldb-update='function _bazelupdatesdb()
-  {
-    echo "Running ant sdb.schemasync and bazel schema-update "
-    echo ""
-    
-    START=$(date +%s)
-    TRIMMED="ant sdb.schemasync and Bazel schema-update"
-
-    cd build    
-    ./ant sdb.schemasync
-    if [ $? -eq 0 ]; then
-      cd ..
-      bazel run //:db-schema-update
-    else
-      cd ..
-    fi
-  };_bazelupdatesdb'
