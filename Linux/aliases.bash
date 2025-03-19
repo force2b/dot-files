@@ -4,12 +4,10 @@ alias globe='while true; do curl -s http://artscene.textfiles.com/vt100/globe.vt
 
 alias upgradeall='function _upgradeall()
   {
-    tmpauth
     sudo apt upgrade
     brew update
     brew upgrade
     omz update
-    ftest update
   };_upgradeall'
 
 alias viprofile='code ~/.bash_profile ~/.bash_rc ~/.zshrc ~/blt/extra-tools/intellij/intellij-sfdc/bin/idea.properties /data/Github/dot-files/'
@@ -57,7 +55,8 @@ alias corestatus='corecli status'
 alias coredeleteorg='corecli db:sdb:drop-org'
 alias corecerts='corecli tls:create-certificates tls:install-certificates'
 
-alias bazelstart='gnome-terminal --tab-with-profile=Task --title "Core Execution" -- bazel run //:core  && waitonhost.sh https://smithmicha-wsl1:6101'
+alias bazelrunandwait='bazel run //:core ; read -n 1'
+alias bazelstart='gnome-terminal --tab-with-profile=Task --title "Core Execution" -- bazel run //:core && waitonhost.sh https://smithmicha-wsl1:6101'
 alias bazeldb='bazel run //db/tools:sdb.start'
 alias bazeldb-update='bazel run //:db-schema-update'
 alias bazeldb-sdbgo='bazel run //db/tools:sdb.go'
@@ -68,6 +67,8 @@ alias bazelbuild='bazel build //:core'
 alias bazelpost='bazel run //:post-final'
 alias bazelclean='bazel clean'
 alias bazelide='idea ./.ijwb'
+# Dmitry suggested this command as a simple fix to most issus
+alias bazelfix='bazel sync --configure' 
 
 alias ftc2='sudo iptables -A INPUT -i docker0 -j ACCEPT;ftest start'
 

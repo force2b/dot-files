@@ -31,3 +31,5 @@ export PATH="$PATH:/home/smithmichael/.local/bin"
 export DOCKER_CONFIG='/var/run/config.json'
 export DOCKER_SOCKET='/var/run/docker.sock'
 
+## Needed for VSCode
+export JAVA_HOME=/home/smithmichael/.cache/bazel/bazel_jdk/openjdk_21.0.3.0.101_21.35.18_x64
